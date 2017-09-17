@@ -5,15 +5,17 @@ pub fn create() {
 
     let args = get_args();
 
-    if args.len() < 3 {
+    if args.len() < 5 {
         print_help();
         return;
     }
 
     let title_arg = &args[1];
     let title     = &args[2];
+    let type_arg  = &args[3];
+    let post_type = &args[4];
 
-    if title_arg != &String::from("--title") {
+    if title_arg != &String::from("--title") ||  type_arg != &String::from("--type") {
         print_help();
         return;
     }
@@ -25,6 +27,7 @@ pub fn create() {
 
     println!("create post:");
     println!("    title:    {}", title);
+    println!("     type:    {}", post_type);
 }
 
 

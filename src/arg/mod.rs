@@ -18,10 +18,12 @@ pub fn print_help() {
     println!("    ");
     println!("blog-cli usage");
     println!("    ");
-    println!("    blog-cli create-type --title type --sort number                  create a blog type with sort from 1 to 255");
-    println!("    blog-cli create-post --title title                               create a blog type");
-    println!("    blog-cli edit title                                              edit a blog in emacs");
+    println!("    blog-cli create-type --title title --sort sort                   create a blog type with sort from 1 to 255");
+    println!("    blog-cli create-post --title title --type type                   create a blog with title of type");
+    println!("    ");
+    println!("    blog-cli edit title                                              edit a blog in emacs, auto save when quit emacs");
     println!("    blog-cli show title                                              show a blog in vmd");
+    println!("    ");
     println!("    blog-cli delete title                                            delete a blog");
     println!("    blog-cli search title                                            search a blog");
     println!("    ");
