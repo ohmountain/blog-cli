@@ -6,6 +6,7 @@ pub enum Method {
     Edit,
     Show,
     Delete,
+    Search,
     Error
 }
 
@@ -18,12 +19,13 @@ pub fn print_help() {
     println!("blog-cli usage");
     println!("    ");
     println!("    blog-cli create-type --title type --sort number                  create a blog type with sort from 1 to 255");
-    println!("    blog-clo create-post --title title                               create a blog type");
+    println!("    blog-cli create-post --title title                               create a blog type");
     println!("    blog-cli edit title                                              edit a blog in emacs");
     println!("    blog-cli show title                                              show a blog in vmd");
     println!("    blog-cli delete title                                            delete a blog");
+    println!("    blog-cli search title                                            search a blog");
     println!("    ");
-    println!("    标题长度不超过84个中文字或255个英文字");
+    println!("    标题长度不超过10个中文字或30个英文字");
     println!("    ");
 
 }
@@ -31,7 +33,7 @@ pub fn print_help() {
 pub fn get_method() -> Method {
     let args = get_args();
 
-    if args.len() < 3 {
+    if args.len() < 2 {
        print_help();
        return Method::Error
     }
@@ -56,6 +58,10 @@ pub fn get_method() -> Method {
 
     if args[0] == String::from("delete") {
         method = Method::Delete;
+    }
+
+    if args[0] == String::from("search") {
+        method = Method::Search;
     }
 
 

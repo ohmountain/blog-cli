@@ -1,4 +1,3 @@
-use std::env;
 use arg::get_args;
 use arg::print_help;
 use std::u8;
@@ -7,7 +6,7 @@ pub fn create() -> bool {
 
     let args = get_args();
 
-    if (args.len() < 5) {
+    if args.len() < 5 {
         print_help();
         return false;
     }
@@ -22,7 +21,7 @@ pub fn create() -> bool {
         return false;
     }
 
-    if title.len() > 255 {
+    if title.len() > 30 {
         print_help();
         return false;
     }
@@ -33,7 +32,7 @@ pub fn create() -> bool {
 
     match sort_number {
         Ok(s) => {
-            if (s < 1) {
+            if s < 1 {
                 print_help();
                 return false;
             }
