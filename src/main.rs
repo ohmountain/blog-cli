@@ -1,16 +1,16 @@
 extern crate blog_cli;
 
-use blog_cli::arg::parse_args;
+use blog_cli::arg::get_method;
 use blog_cli::arg::Method;
 
 fn main() {
-    match parse_args() {
-        Method::Create_post => {
+    match get_method() {
+        Method::CreatePost => {
             println!("Create type");
         },
 
 
-        Method::Create_type => {
+        Method::CreateType => {
             println!("Create post");
         },
 
@@ -29,8 +29,6 @@ fn main() {
         }
 
 
-        Method::Error => {
-            println!("erro");
-        }
+        _  => {}
     }
 }
