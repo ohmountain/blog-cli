@@ -9,20 +9,21 @@ pub enum Method {
     Error
 }
 
-
-fn get_args() -> Vec<String> {
+pub fn get_args() -> Vec<String> {
     env::args().skip(1).map(|x|x).collect()
 }
 
-fn print_help() {
+pub fn print_help() {
     println!("    ");
     println!("blog-cli usage");
     println!("    ");
-    println!("    blog-cli create-type --title type                   create a blog type");
-    println!("    blog-clo create-post --title title                  create a blog type");
-    println!("    blog-cli edit title                                 edit a blog in emacs");
-    println!("    blog-cli show title                                 show a blog in vmd");
-    println!("    blog-cli delete title                               delete a blog");
+    println!("    blog-cli create-type --title type --sort number                  create a blog type with sort from 1 to 255");
+    println!("    blog-clo create-post --title title                               create a blog type");
+    println!("    blog-cli edit title                                              edit a blog in emacs");
+    println!("    blog-cli show title                                              show a blog in vmd");
+    println!("    blog-cli delete title                                            delete a blog");
+    println!("    ");
+    println!("    标题长度不超过84个中文字或255个英文字");
     println!("    ");
 
 }

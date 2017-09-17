@@ -3,6 +3,8 @@ extern crate blog_cli;
 use blog_cli::arg::get_method;
 use blog_cli::arg::Method;
 
+use blog_cli::types::create as create_type;
+
 fn main() {
     match get_method() {
         Method::CreatePost => {
@@ -11,7 +13,7 @@ fn main() {
 
 
         Method::CreateType => {
-            println!("Create post");
+            create_type();
         },
 
 
@@ -31,4 +33,6 @@ fn main() {
 
         _  => {}
     }
+
+
 }
