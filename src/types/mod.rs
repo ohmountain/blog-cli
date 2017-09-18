@@ -1,6 +1,9 @@
 use arg::get_args;
 use arg::print_help;
 use std::u8;
+use std::collections::HashMap;
+use net::Post;
+use net::Perform;
 
 pub fn create() -> bool {
 
@@ -48,6 +51,25 @@ pub fn create() -> bool {
     println!("Create a type: ");
     println!("    title:    {}", title);
     println!("    sort:     {}", sort);
+
+    let mut map = HashMap::new();
+
+    map.insert(String::from("title"), title.to_string());
+
+
+    map.insert(String::from("sort"), sort_str.to_string());
+
+
+    let mut post = Post {
+        url: String::from("http://localhost:3000/api/v2/type"),
+        parameters: map
+    };
+
+
+    let data = post.perform();
+
+
+    println!("{}", data);
 
     true
 }
