@@ -1,9 +1,15 @@
+extern crate serde_json;
+extern crate console;
+
 use arg::get_args;
 use arg::print_help;
 use std::u8;
 use std::collections::HashMap;
 use net::Post;
 use net::Perform;
+use self::serde_json::Value;
+use self::console::Style;
+use self::console::Emoji;
 
 pub fn create() -> bool {
 
@@ -48,10 +54,6 @@ pub fn create() -> bool {
         }
     }
 
-    println!("Create a type: ");
-    println!("    title:    {}", title);
-    println!("    sort:     {}", sort);
-
     let mut map = HashMap::new();
 
     map.insert(String::from("title"), title.to_string());
@@ -69,7 +71,17 @@ pub fn create() -> bool {
     let data = post.perform();
 
 
-    println!("{}", data);
+    let d:Value = serde_json::from_str((&data.as_str())).unwrap();
+
+
+    let code = d.get("code").unwrap().as_u64().unwrap_or(0);
+
+    let cyan = Style::new().green().bold();
+    if code != 200 {
+        println!("This is {} neat", cyan.apply_to("quite"));
+    } else {
+        println!("\n{}   {}\n", Emoji("✨", ":-)"), cyan.apply_to("创建成功!"));
+    }
 
     true
 }
