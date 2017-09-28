@@ -60,6 +60,7 @@ impl Perform for Get {
         let mut easy = Easy::new();
 
         easy.url(&self.url.as_str()).unwrap();
+
         easy.get(true).unwrap();
 
         {
@@ -70,7 +71,7 @@ impl Perform for Get {
                 Ok(raw.len())
             }).unwrap();
 
-            transfer.perform().unwrap();
+            transfer.perform().unwrap_or(());
         }
 
         String::from(str::from_utf8(data.as_slice()).unwrap_or(""))

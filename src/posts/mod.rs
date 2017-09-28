@@ -1,5 +1,11 @@
+extern crate base64;
+
 use arg::get_args;
 use arg::print_help;
+use std::ops::Add;
+use net::Perform;
+use net::Get;
+use self::base64::encode;
 
 pub fn create() {
 
@@ -47,8 +53,15 @@ pub fn show() {
         return;
     }
 
-    println!("show post:");
-    println!("    title:    {}", title);
+    let mut url = String::from("http://127.0.0.1:8000/api/v2/posts/");
+
+    let u = url.add(encode(title).as_str());
+
+    println!("{:?}", u);
+
+    let mut get = Get{ url: u};
+
+    println!("{}", get.perform());
 }
 
 pub fn edit() {
